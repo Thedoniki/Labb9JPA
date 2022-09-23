@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>POSTS</h2>
+
+</div>
+<table class="table">
+    <thead>
+
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Text</th>
+        <th scope="col">Date</th>
+        <th scope="col">Username</th>
+    </tr>
+    {{#posts}}
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{id}}</td>
+        <td>{{title}}</td>
+        <td>{{text}}</td>
+        <td>{{creationDate}}</td>
+        <td>{{username}}</td>
+        <td> <a href="/deletePost/{{id}}">Remove Post</a></td>
+        <td> <a href="/editview/{{id}}">Edit Post</a></td>
+        <td> <a href="/commentviews/{{id}}">add comment to post</a></td>
+
+    </tr>
+    {{/posts}}
+    </tbody>
+</table>
+
+<h3>ADD POST</h3>
+<form method="POST" action="/addPost">
+    <table class="table">
+
+        <tr>
+            <td>Title: <input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td>Text: <input type="text" name="text"></td>
+        </tr>
+
+
+        <td><input type="submit" name="submit" value="Create" class="btn btn-primary"></td>
+    </table>
+</form>
+
+<div class="container">
+    <h2>Comments</h2>
+</div>
+<table class="table">
+<thead>
+
+<tr>
+    <th scope="col">ID</th>
+    <th scope="col">Text</th>
+    <th scope="col">Grade</th>
+    <th scope="col">Date</th>
+    <th scope="col">Username</th>
+    <th scope="col">Post_ID</th>
+</tr>
+    {{#comments}}
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{id}}</td>
+        <td>{{text}}</td>
+        <td>{{grade}}</td>
+        <td>{{creationDate}}</td>
+        <td>{{users.username}}</td>
+        <td>{{posts.id}}</td>
+        <td> <a href="/deleteComment/{{id}}">Remove Comment</a></td>
+        <td> <a href="/commentview/{{id}}">Edit Comment</a></td>
+    </tr>
+    {{/comments}}
+</tbody>
+    </table>
+</body>
+</html>

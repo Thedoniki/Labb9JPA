@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Search</h1>
+
+    <form action="/search" method="get" onsubmit="this.action = this.action + '?search=' + this.search.value">
+        <div class="form-group">
+            <label for="search">Search</label>
+            <input type="text" class="form-control" id="search" name="search">
+            <button class="btn btn-danger" type="submit">Submit</button>
+        </div>
+    </form>
+    <h2>Users</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#users}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{username}}</td>
+            </tr>
+        {{/users}}
+        </tbody>
+    </table>
+    <h2>Posts</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">text</th>
+            <th scope="col">Username</th>
+            <th scope="col">creation Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#posts}}
+            <tr>
+                <td><a href="/post/{{id}}">{{id}}</a></td>
+                <td>{{title}}</td>
+                <td>{{text}}</td>
+                <td>{{users.username}}</td>
+                <td>{{creationDate}}</td>
+            </tr>
+
+        {{/posts}}
+        </tbody>
+    </table>
+
+    <h2>Comments</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Text</th>
+            <th scope="col">Post</th>
+            <th scope="col">Username</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {{#comments}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{text}}</td>
+                <td>{{posts.title}}</td>
+                <td>{{users.username}}</td>
+
+            </tr>
+        {{/comments}}
+        </tbody>
+    </table>
+</div>
